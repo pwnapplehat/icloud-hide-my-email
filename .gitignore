@@ -1,0 +1,8 @@
+config.json
+cookie.txt
+cookies.txt
+generated_emails.csv
+emails.txt
+__pycache__/
+*.pyc
+.env
