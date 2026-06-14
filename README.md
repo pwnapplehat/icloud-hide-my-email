@@ -1,8 +1,12 @@
 # icloud-hide-my-email
 
+[![GitHub](https://img.shields.io/badge/GitHub-pwnapplehat%2Ficloud--hide--my--email-blue)](https://github.com/pwnapplehat/icloud-hide-my-email)
+
 CLI tool to create and manage **iCloud Hide My Email** addresses and pull verification codes from your inbox over IMAP.
 
 Apple exposes Hide My Email through the icloud.com web app. This project calls the same internal APIs using session cookies from your browser, plus optional IMAP for OTP capture.
+
+**Repository:** [github.com/pwnapplehat/icloud-hide-my-email](https://github.com/pwnapplehat/icloud-hide-my-email)
 
 ## Features
 
@@ -16,18 +20,27 @@ Apple exposes Hide My Email through the icloud.com web app. This project calls t
 - Python 3.10+
 - Active **iCloud+** subscription (Hide My Email)
 - Browser session on [icloud.com](https://www.icloud.com) to export cookies
-- App-specific password for IMAP (only if you use `otp` / `pipeline` / `test-imap`)
+- App-specific password for IMAP (only if you use `otp`, `pipeline`, or `test-imap`)
 
 ## Quick start
 
 ```shell
-git clone https://github.com/YOUR_USERNAME/icloud-hide-my-email.git iCloudMailReverse
-cd iCloudMailReverse/icloud-hide-my-email
+git clone https://github.com/pwnapplehat/icloud-hide-my-email.git
+cd icloud-hide-my-email
 pip install -r requirements.txt
-copy config.example.json config.json
 ```
 
-Edit `config.json` with your cookies and (optionally) IMAP credentials, then:
+Copy the config template and add your credentials:
+
+```shell
+# Windows
+copy config.example.json config.json
+
+# macOS / Linux
+cp config.example.json config.json
+```
+
+Edit `config.json`, then verify setup:
 
 ```shell
 python main.py test-auth
@@ -112,16 +125,15 @@ IMAP: `imap.mail.me.com:993` (SSL).
 ## Project layout
 
 ```
-iCloudMailReverse/
-└── icloud-hide-my-email/
-    ├── main.py              # CLI entry point
-    ├── icloud_auth.py       # Cookie loading and validation
-    ├── hme_generator.py     # Hide My Email REST client
-    ├── mail_reader.py       # IMAP reader and OTP extraction
-    ├── config.example.json  # Config template
-    ├── requirements.txt
-    ├── .gitignore
-    └── README.md
+icloud-hide-my-email/
+├── main.py              # CLI entry point
+├── icloud_auth.py       # Cookie loading and validation
+├── hme_generator.py     # Hide My Email REST client
+├── mail_reader.py       # IMAP reader and OTP extraction
+├── config.example.json  # Config template
+├── requirements.txt
+├── .gitignore
+└── README.md
 ```
 
 Local only (not in git): `config.json`, `cookie.txt`, `generated_emails.csv`.
@@ -130,16 +142,20 @@ Local only (not in git): `config.json`, `cookie.txt`, `generated_emails.csv`.
 
 **Authentication failed (401/421)** — Cookies expired or incomplete. Re-export from DevTools.
 
-**Generate failed** — Rate limit or wrong `mail_domain_ws_host`. Wait 30 minutes or fix host/build numbers from Network tab.
+**Generate failed** — Rate limit or wrong `mail_domain_ws_host`. Wait 30 minutes or fix host/build numbers from the Network tab.
 
-**IMAP failed** — Use app-specific password, not your Apple ID password. Username must not include `@icloud.com`.
+**IMAP failed** — Use an app-specific password, not your Apple ID password. Username must not include `@icloud.com`.
 
 ## Security
 
 - Treat `config.json` like a password file.
-- Revoke app-specific passwords you no longer use at account.apple.com.
+- Revoke app-specific passwords you no longer use at [account.apple.com](https://account.apple.com).
 - HME forwards to your primary iCloud inbox; generated addresses are tied to your account.
 
 ## Disclaimer
 
 This tool is not affiliated with Apple. It uses the same web APIs as icloud.com. Use responsibly and in line with Apple's terms of service.
+
+## License
+
+No license file is included yet. Add one if you plan to open-source contributions.
