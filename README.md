@@ -1,5 +1,6 @@
 # icloud-hide-my-email
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub](https://img.shields.io/badge/GitHub-pwnapplehat%2Ficloud--hide--my--email-blue)](https://github.com/pwnapplehat/icloud-hide-my-email)
 
 CLI tool to create and manage **iCloud Hide My Email** addresses and pull verification codes from your inbox over IMAP.
@@ -133,6 +134,7 @@ icloud-hide-my-email/
 ├── config.example.json  # Config template
 ├── requirements.txt
 ├── .gitignore
+├── LICENSE              # MIT License
 └── README.md
 ```
 
@@ -158,4 +160,4 @@ This tool is not affiliated with Apple. It uses the same web APIs as icloud.com.
 
 ## License
 
-No license file is included yet. Add one if you plan to open-source contributions.
+MIT License — see [LICENSE](LICENSE) ([MIT on GitHub / Choose a License](https://choosealicense.com/licenses/mit/)).
